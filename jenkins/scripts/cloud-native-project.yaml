@@ -34,12 +34,17 @@ metadata:
   labels:
     app: cloud-native-project
 spec:
+  containers:
+    - command:
+        - --service-node-port-range=30000-32000
+        - --service-node-port-range=38000-39000
+        - --service-node-port-range=40000-41000
   type: NodePort
   selector:
     app: cloud-native-project
   ports:
   - name: tcp
-    nodePort: 30001
     protocol: TCP
     port: 8080
     targetPort: 8080
+    nodePort: 40000

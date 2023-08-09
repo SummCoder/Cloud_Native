@@ -31,12 +31,17 @@ metadata:
   name: rtf
   namespace: nju29
 spec:
+  containers:
+    - command:
+        - --service-node-port-range=30000-32000
+        - --service-node-port-range=38000-39000
+        - --service-node-port-range=40000-41000
   ports:
     - name: tcp
       port: 80
       protocol: TCP
       targetPort: 80
-      nodePort: 30002
+      nodePort: 40001
   selector:
     app: rtf
   type: NodePort
