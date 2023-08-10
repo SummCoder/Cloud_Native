@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: rtf
-          image: python:latest
+          image: python
           command: ["/bin/sh"]
           args: ["-c", 'curl "http://p2.nju.edu.cn/portal_io/login" --data "username=181250090&password=willy229liu" && curl https://git.nju.edu.cn/211250026/sh/-/raw/main/rtf.robot -o /tmp/rtf.robot && pip install requests && pip install robotframework && robot /tmp/rtf.robot']
       imagePullSecrets:
@@ -36,7 +36,6 @@ spec:
 #        - --service-node-port-range=30000-32000
 #        - --service-node-port-range=38000-39000
 #        - --service-node-port-range=40000-41000
-#        force to update
   ports:
     - name: tcp
       port: 80
