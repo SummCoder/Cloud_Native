@@ -45,28 +45,3 @@ spec:
   selector:
     app: rtf
   type: NodePort
-      imagePullSecrets:
-        - name: nju29
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: rtf
-  name: rtf
-  namespace: nju29
-spec:
-#  containers:
-#    - command:
-#        - --service-node-port-range=30000-32000
-#        - --service-node-port-range=38000-39000
-#        - --service-node-port-range=40000-41000
-  ports:
-    - name: tcp
-      port: 80
-      protocol: TCP
-      targetPort: 80
-#      nodePort: 40001
-  selector:
-    app: rtf
-  type: NodePort
