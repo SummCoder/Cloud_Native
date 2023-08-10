@@ -15,7 +15,6 @@ spec:
       labels:
         app: rtf
     spec:
-      restartPolicy: Never
       containers:
         - name: rtf
           image: harbor.edu.cn/nju29/python:latest
