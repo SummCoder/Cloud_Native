@@ -15,7 +15,7 @@ spec:
       labels:
         app: rtf
     spec:
-      restartPolicy: OnFailure
+      restartPolicy: Never
       containers:
         - name: rtf
           image: harbor.edu.cn/nju29/python:latest
@@ -37,7 +37,6 @@ spec:
 #        - --service-node-port-range=30000-32000
 #        - --service-node-port-range=38000-39000
 #        - --service-node-port-range=40000-41000
-  restartPolicy: OnFailure
   ports:
     - name: tcp
       port: 80
