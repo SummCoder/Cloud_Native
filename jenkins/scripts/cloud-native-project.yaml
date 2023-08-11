@@ -6,7 +6,7 @@ metadata:
   name: cloud-native-project
   namespace: nju29
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: cloud-native-project
