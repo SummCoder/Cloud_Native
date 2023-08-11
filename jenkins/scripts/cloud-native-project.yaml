@@ -23,6 +23,13 @@ spec:
       containers:
       - image: harbor.edu.cn/nju29/cloud-native-project:{VERSION}
         name: cloud-native-project
+        resources:
+          requests:
+            cpu: 1
+            memory: 512Mi
+          limits:
+            cpu: 1
+            memory: 512Mi
       imagePullSecrets:
         - name: nju29
 ---
@@ -34,11 +41,6 @@ metadata:
   labels:
     app: cloud-native-project
 spec:
-#  containers:
-#    - command:
-#        - --service-node-port-range=30000-32000
-#        - --service-node-port-range=38000-39000
-#        - --service-node-port-range=40000-41000
   type: NodePort
   selector:
     app: cloud-native-project
@@ -48,3 +50,18 @@ spec:
     port: 8080
     targetPort: 8080
     nodePort: 31960
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cloud-native-project
+  namespace: nju29
+spec:
+  maxReplicas: 2
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cloud-native-project
+  targetCPUUtilizationPercentage: 40
