@@ -7,9 +7,8 @@ pipeline {
             }
             steps {
                 echo "1.Clone Stage"
-
-                git  credentialsId: '2bff2ea9-6e20-44c3-a19f-c673582e3e38',
-                url: "https://gitee.com/nju_wy/cloud-native.git"
+                sh 'curl "http://p2.nju.edu.cn/portal_io/login?username=xxx&password=xxx"'
+                git url: "https://gitee.com/frechen026/cloud-native.git"
 
             }
         }
@@ -61,13 +60,10 @@ pipeline {
 
 node('slave') {
     container('jnlp-kubectl') {
-//     首先需要开启外网，暂时无法实现
-//         stage('connect'){
-//             sh 'curl "http://p.nju.edu.cn/portal_io/login" --data "username=181250090&password=willy229liu"'
-//         }
         stage('Git Clone') {
             echo "5. Git Clone YAML To Slave"
-            git url: "https://gitee.com/nju_wy/cloud-native.git"
+            sh 'curl "http://p2.nju.edu.cn/portal_io/login?username=xxx&password=xxx"'
+            git url: "https://gitee.com/frechen026/cloud-native.git"
         }
         stage('YAML') {
             echo "5. Change YAML File Stage"
@@ -81,13 +77,10 @@ node('slave') {
 
         }
         stage('RTF Test'){
-            echo "RTF Test Stage"
+            echo "7. RTF Test Stage"
             sh 'kubectl apply -f ./jenkins/scripts/rtf.yaml -n nju29'
 
         }
     }
 
 }
-
-
-
